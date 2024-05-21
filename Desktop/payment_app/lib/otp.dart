@@ -1,7 +1,12 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Otp extends StatefulWidget {
-  const Otp({super.key});
+  String verificationid;
+  Otp({super.key, required this.verificationid});
 
   @override
   State<Otp> createState() => _OtpState();
@@ -32,9 +37,37 @@ class _OtpState extends State<Otp> {
           const SizedBox(
             height: 30,
           ),
-          ElevatedButton(onPressed: () {}, child: const Text("otp"))
+          ElevatedButton(
+              onPressed: () async {
+                try {
+                  PhoneAuthCredential credential = PhoneAuthProvider.credential(
+                      verificationId: widget.verificationid,
+                      smsCode: otpcontroller.text.toString());
+                  FirebaseAuth.instance
+                      .signInWithCredential(credential)
+                      .then((value) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const MyHomePage(title: "MyHomePage")));
+                  });
+                } catch (ex) {
+                  log(ex.toString()); //log(ex.toString());
+                }
+              },
+              child: const Text("otp"))
         ],
       ),
     );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key, required String title});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

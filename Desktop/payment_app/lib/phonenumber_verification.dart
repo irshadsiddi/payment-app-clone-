@@ -1,8 +1,5 @@
-import 'dart:js_interop';
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:payment_app/otp.dart';
@@ -27,7 +24,7 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: TextField(
                 controller: phonecontroller,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                     hintText: "Enter Phone Number",
                     suffixIcon: const Icon(Icons.phone),
