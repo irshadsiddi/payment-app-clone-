@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:payment_app/otp.dart';
+
 import 'package:payment_app/phonenumber_verification.dart';
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:payment_app/phonenumber_verification.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: AuthPage(),
-    );
-  }
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    initialRoute: 'phonenumber_verification',
+    routes: {
+      'phonenumber_verification': (context) => Phonenumber(),
+      'otp': (context) => Otp(),
+    },
+    // home: Phonenumber(),
+  ));
 }
