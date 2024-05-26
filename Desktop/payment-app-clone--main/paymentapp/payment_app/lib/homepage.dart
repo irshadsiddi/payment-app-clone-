@@ -54,9 +54,10 @@ class _MyHomepageState extends State<MyHomepage> {
           currentIndex: barindex,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.history), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: "search"),
+            BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.history), label: "history"),
           ]),
     );
   }
