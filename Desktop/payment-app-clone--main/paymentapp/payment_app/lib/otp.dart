@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:payment_app/homepage.dart';
+import 'package:payment_app/user_details';
 import 'package:pinput/pinput.dart';
 
 class Otp extends StatefulWidget {
@@ -78,7 +79,7 @@ class _OtpState extends State<Otp> {
                         .signInWithCredential(credential);
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => MyHomepage()),
+                      MaterialPageRoute(builder: (context) => UserDetails()),
                     );
                   } catch (ex) {
                     log(ex.toString());

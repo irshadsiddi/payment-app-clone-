@@ -16,14 +16,16 @@ class _MyHomepageState extends State<MyHomepage> {
         backgroundColor: Colors.purple[600],
         elevation: 0,
         // profile in icon button
-        leading: IconButton(
-          onPressed: () {},
+        /* leading: IconButton(
+          onPressed: () {
+            
+          },
           icon: Icon(
             Icons.account_circle_sharp,
             color: Colors.white,
             size: 30,
           ),
-        ),
+        ),*/
 
         // right side top action buttons
         actions: [
@@ -45,6 +47,14 @@ class _MyHomepageState extends State<MyHomepage> {
           ),
         ],
       ),
+
+      // drawer
+      drawer: Drawer(
+        child: Container(
+          color: Color.fromARGB(255, 197, 91, 215),
+        ),
+      ),
+
       bottomNavigationBar: BottomNavigationBar(
           onTap: (index) {
             setState(() {
