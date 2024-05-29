@@ -1,12 +1,13 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:payment_app/homepage.dart';
+
 import 'package:payment_app/user_details';
 import 'package:pinput/pinput.dart';
 
 class Otp extends StatefulWidget {
   final String verificationid;
+
   Otp({Key? key, required this.verificationid}) : super(key: key);
 
   @override
