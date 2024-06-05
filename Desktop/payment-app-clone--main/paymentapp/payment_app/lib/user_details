@@ -48,15 +48,22 @@ class _UserDetailsState extends State<UserDetails> {
           children: [
             TextField(
               controller: nameController,
-              decoration: InputDecoration(hintText: 'Name'),
+              decoration: InputDecoration(hintText: 'Name',
+              border: Outlineinputborder(),
+              ),
+              
             ),
             TextField(
               controller: emailController,
-              decoration: InputDecoration(hintText: 'Email'),
+              decoration: InputDecoration(hintText: 'Email',
+               border: Outlineinputborder(),
+              ),
             ),
             TextField(
               controller: mobileController,
-              decoration: InputDecoration(hintText: 'Mobile Number'),
+              decoration: InputDecoration(hintText: 'Mobile Number',
+               border: Outlineinputborder(),
+              ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
