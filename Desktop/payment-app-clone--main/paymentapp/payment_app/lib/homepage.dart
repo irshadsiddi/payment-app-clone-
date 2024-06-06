@@ -18,7 +18,7 @@ class _MyHomepageState extends State<MyHomepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[600],
+        backgroundColor: Colors.purple[700],
         elevation: 0,
         // profile in icon button
         /* leading: IconButton(
@@ -114,6 +114,101 @@ class _MyHomepageState extends State<MyHomepage> {
         ),
       ),
 
+      body: Center(
+        child: Column(
+          children: [
+            Text(
+              "Your balance",
+              style: TextStyle(fontSize: 19),
+            ),
+            Row(
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.purple[100],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 11, horizontal: 15),
+                      child: const Icon(
+                        Icons.send,
+                        color: Color.fromARGB(218, 255, 255, 255),
+                      ),
+                    ),
+                  ],
+                ),
+                Stack(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.purple[100],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 11, horizontal: 15),
+                      child: const Icon(
+                        Icons.send,
+                        color: Color.fromARGB(218, 255, 255, 255),
+                      ),
+                    ),
+                  ],
+                ),
+                Stack(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.purple[100],
+                      ),
+                    ),
+                    const Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 11, horizontal: 15),
+                      child: const Icon(
+                        Icons.send,
+                        color: Color.fromARGB(218, 255, 255, 255),
+                      ),
+                    ),
+                  ],
+                ),
+                Stack(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.purple[100],
+                      ),
+                    ),
+                    const Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 11, horizontal: 15),
+                      child: const Icon(
+                        Icons.send,
+                        color: Color.fromARGB(218, 255, 255, 255),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.purple,
           onTap: (index) {
@@ -123,11 +218,31 @@ class _MyHomepageState extends State<MyHomepage> {
           },
           currentIndex: barindex,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: "search"),
-            BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: "Home"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.history), label: "history"),
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.purple[200],
+                ),
+                label: "Home",
+                backgroundColor: Colors.purple[700]),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.purple[200],
+                ),
+                label: "search"),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.qr_code,
+                  color: Colors.purple[200],
+                ),
+                label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.history,
+                  color: Colors.purple[200],
+                ),
+                label: "history"),
           ]),
     );
   }
