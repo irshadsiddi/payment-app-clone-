@@ -1,6 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:payment_app/edit_profile.dart';
+import 'package:payment_app/qr_scanner.dart';
 //import 'package:payment_app/phonenumber_verification.dart';
 
 class MyHomepage extends StatefulWidget {
@@ -12,13 +17,12 @@ class MyHomepage extends StatefulWidget {
 
 class _MyHomepageState extends State<MyHomepage> {
   int barindex = 0;
-  String display_name = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[700],
+        backgroundColor: Colors.purple[800],
         elevation: 0,
         // profile in icon button
         /* leading: IconButton(
@@ -35,7 +39,10 @@ class _MyHomepageState extends State<MyHomepage> {
         // right side top action buttons
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => QRCodeScannerApp()));
+            },
             icon: Icon(
               Icons.qr_code_scanner,
               color: Colors.white,
@@ -56,25 +63,40 @@ class _MyHomepageState extends State<MyHomepage> {
       // drawer
       drawer: Drawer(
         child: Container(
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: Colors.purple[50],
           child: ListView(
             children: [
               Column(
                 children: [
                   const DrawerHeader(
-                    child: Icon(
-                      Icons.account_circle_sharp,
-                      size: 40,
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.account_circle_sharp,
+                          size: 40,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text("Irshad"),
+                      ],
                     ),
                   ),
                   const Divider(
-                    color: Colors.black12,
+                    color: Color.fromARGB(47, 0, 0, 0),
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.symmetric(horizontal: 30),
                     leading: Icon(Icons.account_box),
                     title: Text("Edit Profile"),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => editprofile(),
+                        ),
+                      );
+                    },
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.symmetric(horizontal: 30),
@@ -117,11 +139,28 @@ class _MyHomepageState extends State<MyHomepage> {
       body: Center(
         child: Column(
           children: [
-            Text(
+            /*Text(
               "Your balance",
               style: TextStyle(fontSize: 19),
+            ),*/
+            const SizedBox(
+              height: 20,
             ),
+            Stack(
+              children: [
+                Container(
+                  height: 175,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.purple[800],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 30),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Stack(
                   children: [
@@ -138,7 +177,7 @@ class _MyHomepageState extends State<MyHomepage> {
                           vertical: 11, horizontal: 15),
                       child: const Icon(
                         Icons.send,
-                        color: Color.fromARGB(218, 255, 255, 255),
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                   ],
@@ -157,8 +196,8 @@ class _MyHomepageState extends State<MyHomepage> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 11, horizontal: 15),
                       child: const Icon(
-                        Icons.send,
-                        color: Color.fromARGB(218, 255, 255, 255),
+                        Icons.wallet_rounded,
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                   ],
@@ -177,8 +216,8 @@ class _MyHomepageState extends State<MyHomepage> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 11, horizontal: 15),
                       child: const Icon(
-                        Icons.send,
-                        color: Color.fromARGB(218, 255, 255, 255),
+                        Icons.account_balance_sharp,
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                   ],
@@ -205,6 +244,18 @@ class _MyHomepageState extends State<MyHomepage> {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 5,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text("send"),
+                Text("      top up"),
+                Text(" balance"),
+                Text("history"),
+              ],
+            ),
           ],
         ),
       ),
@@ -224,7 +275,7 @@ class _MyHomepageState extends State<MyHomepage> {
                   color: Colors.purple[200],
                 ),
                 label: "Home",
-                backgroundColor: Colors.purple[700]),
+                backgroundColor: Colors.purple[800]),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.search,
@@ -233,16 +284,17 @@ class _MyHomepageState extends State<MyHomepage> {
                 label: "search"),
             BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.qr_code,
+                  Icons.show_chart_rounded,
+                  size: 25,
                   color: Colors.purple[200],
                 ),
-                label: "Home"),
+                label: "data"),
             BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.history,
+                  Icons.compare_arrows_rounded,
                   color: Colors.purple[200],
                 ),
-                label: "history"),
+                label: "History"),
           ]),
     );
   }
