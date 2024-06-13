@@ -18,13 +18,16 @@ class _PhonenumberState extends State<Phonenumber> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 25),
+        margin: const EdgeInsets.symmetric(horizontal: 25),
         alignment: Alignment.center,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/image copy.png'),
+              const SizedBox(
+                height: 10,
+              ),
               const Text(
                 "Phone Verification",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -34,7 +37,7 @@ class _PhonenumberState extends State<Phonenumber> {
                 "Verify your phone number",
                 style: TextStyle(fontSize: 15),
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 7),
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(width: 1, color: Colors.grey),
@@ -42,7 +45,7 @@ class _PhonenumberState extends State<Phonenumber> {
                 ),
                 child: Row(
                   children: [
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     SizedBox(
                       width: 40,
                       child: TextField(
@@ -50,12 +53,12 @@ class _PhonenumberState extends State<Phonenumber> {
                         decoration: InputDecoration(border: InputBorder.none),
                       ),
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Expanded(
                       child: TextField(
                         controller: phonenumber,
                         keyboardType: TextInputType.phone,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "Enter your Phone Number"),
                       ),
@@ -91,7 +94,7 @@ class _PhonenumberState extends State<Phonenumber> {
                     log(e.toString());
                   }
                 },
-                child: Text("Verify"),
+                child: const Text("Verify"),
               ),
             ],
           ),

@@ -27,8 +27,8 @@ class _InitialScreenState extends State<InitialScreen> {
         Navigator.pushReplacementNamed(context, 'user_details');
       }
     } else {
-      Navigator.pushReplacementNamed(
-          context, 'user_details'); // Handle unauthenticated state
+      // this handles unauthenticated case
+      Navigator.pushReplacementNamed(context, 'user_details');
     }
   }
 

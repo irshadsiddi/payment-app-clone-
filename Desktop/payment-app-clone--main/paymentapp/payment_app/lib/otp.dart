@@ -28,7 +28,7 @@ class _OtpState extends State<Otp> {
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
           fontSize: 20,
           color: Color.fromRGBO(30, 60, 87, 1),
           fontWeight: FontWeight.w600),
@@ -45,7 +45,7 @@ class _OtpState extends State<Otp> {
 
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 25),
+        margin: const EdgeInsets.symmetric(horizontal: 25),
         alignment: Alignment.center,
         child: SingleChildScrollView(
           child: Column(
@@ -89,13 +89,13 @@ class _OtpState extends State<Otp> {
                     ));
                   }
                 },
-                child: Text("Verify Phone Number"),
+                child: const Text("Verify Phone Number"),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "phonenumber_verification");
                 },
-                child: Text("Edit Phone Number?"),
+                child: const Text("Edit Phone Number?"),
               ),
             ],
           ),

@@ -12,7 +12,7 @@ class _editprofileState extends State<editprofile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           "Profile",
           style: TextStyle(
@@ -45,7 +45,7 @@ class _editprofileState extends State<editprofile> {
               ],
             ),
           ),
-          Row(
+          const Row(
             children: [Icon(Icons.account_circle_sharp)],
           ),
         ],

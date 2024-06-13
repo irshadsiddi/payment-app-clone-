@@ -9,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  // Check if a user is already signed in
+  // Check if a user is already vrified his phone number
   User? user = FirebaseAuth.instance.currentUser;
 
   runApp(MaterialApp(

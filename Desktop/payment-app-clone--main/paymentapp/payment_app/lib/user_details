@@ -1,84 +1,4 @@
-/*import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
-class UserDetails extends StatefulWidget {
-  
-  UserDetails({Key? key}) : super(key: key); 
-  @override
-  _UserDetailsState createState() => _UserDetailsState();
-}
-
-class _UserDetailsState extends State<UserDetails> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController mobileController = TextEditingController();
-
- 
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    mobileController.dispose();
-    super.dispose();
-  }
-
-  Future<void> saveUserDetails() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-        'name': nameController.text.trim(),
-        'email': emailController.text.trim(),
-        'mobilenumber': mobileController.text.trim(),
-      });
-      Navigator.pushReplacementNamed(context, 'homepage');
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Enter Your Details'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: nameController,
-              decoration: InputDecoration(hintText: 'Name',
-              border: outlineinputborder(),
-              ),
-              
-            ),
-            TextFormField(
-              controller: emailController,
-              decoration: InputDecoration(hintText: 'Email',
-               border: outlineinputborder(),
-              ),
-            ),
-            TextFormField(
-              controller: mobileController,
-              decoration: InputDecoration(hintText: 'Mobile Number',
-               border: outlineinputborder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                await saveUserDetails();
-              },
-              child: Text('Save'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-*/
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -135,7 +55,7 @@ class _UserDetailsState extends State<UserDetails> {
             TextFormField(
               controller: nameController,
               decoration: InputDecoration(
-                hintText: 'Name',
+                hintText: 'Enter your Name',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -143,7 +63,7 @@ class _UserDetailsState extends State<UserDetails> {
             TextFormField(
               controller: emailController,
               decoration: InputDecoration(
-                hintText: 'Email',
+                hintText: 'Enter your Email',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -151,7 +71,7 @@ class _UserDetailsState extends State<UserDetails> {
             TextFormField(
               controller: mobileController,
               decoration: InputDecoration(
-                hintText: 'Mobile Number',
+                hintText: 'Enter your Mobile Number',
                 border: OutlineInputBorder(),
               ),
             ),
