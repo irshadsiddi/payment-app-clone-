@@ -35,26 +35,34 @@ class _MyHomepageState extends State<MyHomepage> {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color.fromARGB(255, 255, 254, 254),
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                color: Colors.blue[50],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Center(
-                child: Text(
-                  'SI',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
+            /*GestureDetector(
+              onTap: () {
+                Scaffold.of(context).openDrawer();
+              },
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: Colors.blue[50],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Center(
+                  child: Text(
+                    'SI',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),
+            ),*/
+            const SizedBox(
+              width: 0,
             ),
             Container(
               child: Padding(
@@ -512,6 +520,120 @@ class _MyHomepageState extends State<MyHomepage> {
           ),
         ),
       ),
+
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 163, 214, 255),
+              ),
+              padding: EdgeInsets.all(0), // Adjust padding here
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 55,
+                      width: 55,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    Text(
+                      'Drawer Header',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                      ),
+                    ),
+                    const Text(
+                      'Phonenumber',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                      ),
+                    ),
+                    Container(
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 90,
+                          ),
+                          Icon(Icons.qr_code),
+                          const SizedBox(width: 9),
+                          Text(
+                            'QR Code',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+              leading: const Icon(Icons.account_box),
+              title: const Text("Edit Profile"),
+              onTap: () {
+                // Navigate to edit profile screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => editprofile(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+              leading: const Icon(Icons.history),
+              title: const Text("History"),
+              onTap: () {
+                // Handle history tap
+              },
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+              leading: const Icon(Icons.settings),
+              title: const Text("Settings"),
+              onTap: () {
+                // Handle settings tap
+              },
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+              leading: const Icon(Icons.phone_in_talk_outlined),
+              title: const Text("Contact"),
+              onTap: () {
+                // Handle contact tap
+              },
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+              leading: const Icon(Icons.question_mark),
+              title: const Text("About App"),
+              onTap: () {
+                // Handle about app tap
+              },
+            ),
+            SizedBox(height: 150), // Adjusted space between list items
+            ElevatedButton(
+              onPressed: () {
+                // Handle logout button tap
+              },
+              child: const Text("Log out"),
+            ),
+          ],
+        ),
+      ),
       /* floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.purple[800],
@@ -550,18 +672,22 @@ class _MyHomepageState extends State<MyHomepage> {
                 label: "History"),
           ]),*/
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      /*floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        
         padding: const EdgeInsets.symmetric(horizontal: 0),
         height: 60,
-        color: Colors.cyan.shade400,
+        color: Color.fromARGB(255, 38, 134, 218),
         shape: const CircularNotchedRectangle(),
-        notchMargin: 5,
+        
+        notchMargin: 10,
         child: Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
+            
             IconButton(
+              
               icon: const Icon(
                 Icons.home,
                 size: 30,
@@ -589,6 +715,71 @@ class _MyHomepageState extends State<MyHomepage> {
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
               onPressed: () {},
+            ),
+          ],
+        ),
+      ),*/
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        padding: const EdgeInsets.symmetric(horizontal: 0),
+        height: 60,
+        color: const Color.fromARGB(255, 38, 134, 218),
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 10,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            InkWell(
+              onTap: () {
+                setState(() {
+                  barindex = 0;
+                  // Handle tap for first icon (home)
+                });
+              },
+              child: Icon(
+                Icons.home,
+                size: 30,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  barindex = 1;
+                  // Handle tap for second icon (search)
+                });
+              },
+              child: Icon(
+                Icons.search,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  barindex = 2;
+
+                  // Handle tap for third icon (print)
+                });
+              },
+              child: Icon(
+                Icons.print,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  barindex = 3;
+                  // Handle tap for fourth icon (people)
+                });
+              },
+              child: Icon(
+                Icons.people,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
             ),
           ],
         ),
