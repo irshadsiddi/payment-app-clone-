@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:payment_app/edit_profile.dart';
+import 'package:payment_app/phonenumber_verification.dart';
 import 'package:payment_app/qr_scanner.dart';
 //import 'package:payment_app/phonenumber_verification.dart';
 
@@ -40,27 +42,6 @@ class _MyHomepageState extends State<MyHomepage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            /*GestureDetector(
-              onTap: () {
-                Scaffold.of(context).openDrawer();
-              },
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  color: Colors.blue[50],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Center(
-                  child: Text(
-                    'SI',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
-            ),*/
             const SizedBox(
               width: 0,
             ),
@@ -99,242 +80,7 @@ class _MyHomepageState extends State<MyHomepage> {
             ),
           ],
         ),
-
-        // profile in icon button
-        /* leading: IconButton(
-          onPressed: () {
-            
-          },
-          icon: Icon(
-            Icons.account_circle_sharp,
-            color: Colors.white,
-            size: 30,
-          ),
-        ),*/
-
-        // right side top action buttons
-        /* actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => QRCodeScannerApp()));
-            },
-            icon: const Icon(
-              Icons.qr_code_scanner,
-              color: Colors.white,
-              size: 30,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications,
-              color: Colors.white,
-              size: 30,
-            ),
-          ),
-        ],*/
       ),
-
-      // drawer
-      /*drawer: Drawer(
-        child: Container(
-          color: Colors.purple[50],
-          child: ListView(
-            children: [
-              Column(
-                children: [
-                  const DrawerHeader(
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.account_circle_sharp,
-                          size: 40,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text("Irshad"),
-                      ],
-                    ),
-                  ),
-                  const Divider(
-                    color: Color.fromARGB(47, 0, 0, 0),
-                  ),
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                    leading: const Icon(Icons.account_box),
-                    title: const Text("Edit Profile"),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => editprofile(),
-                        ),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                    leading: const Icon(Icons.history),
-                    title: const Text("History"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                    leading: const Icon(Icons.settings),
-                    title: const Text("Settings"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                    leading: const Icon(Icons.phone_in_talk_outlined),
-                    title: const Text("Contact"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                    leading: const Icon(Icons.question_mark),
-                    title: const Text("About App"),
-                    onTap: () {},
-                  ),
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("Log out"),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),*/
-
-      /* body: Center(
-        child: Column(
-          children: [
-            /*Text(
-              "Your balance",
-              style: TextStyle(fontSize: 19),
-            ),*/
-            const SizedBox(
-              height: 20,
-            ),
-            Stack(
-              children: [
-                Container(
-                  height: 175,
-                  width: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.purple[800],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.purple[100],
-                      ),
-                    ),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 11, horizontal: 15),
-                      child: Icon(
-                        Icons.send,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.purple[100],
-                      ),
-                    ),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 11, horizontal: 15),
-                      child: Icon(
-                        Icons.wallet_rounded,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.purple[100],
-                      ),
-                    ),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 11, horizontal: 15),
-                      child: Icon(
-                        Icons.account_balance_sharp,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.purple[100],
-                      ),
-                    ),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 11, horizontal: 15),
-                      child: Icon(
-                        Icons.send,
-                        color: Color.fromARGB(218, 255, 255, 255),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text("send"),
-                Text("      top up"),
-                Text(" balance"),
-                Text("history"),
-              ],
-            ),
-          ],
-        ),
-      ),*/
 
       body: SingleChildScrollView(
         child: Center(
@@ -361,7 +107,7 @@ class _MyHomepageState extends State<MyHomepage> {
                     height: 550,
                     width: double.infinity,
                     decoration: const BoxDecoration(
-                      color: Colors.amber,
+                      color: Color.fromARGB(255, 255, 255, 255),
                       borderRadius: BorderRadiusDirectional.only(
                         topStart: Radius.circular(30),
                         topEnd: Radius.circular(30),
@@ -387,11 +133,13 @@ class _MyHomepageState extends State<MyHomepage> {
                                 ),
                                 borderRadius: BorderRadius.circular(17),
                               ),
-                              child: (const Icon(
-                                Icons.qr_code,
-                                color: Colors.white,
-                                size: 35,
-                              )),
+                              child: const Center(
+                                child: (const Icon(
+                                  Icons.qr_code,
+                                  color: Colors.white,
+                                  size: 35,
+                                )),
+                              ),
                             ),
 
                             // send money
@@ -407,11 +155,13 @@ class _MyHomepageState extends State<MyHomepage> {
                                 ),
                                 borderRadius: BorderRadius.circular(17),
                               ),
-                              child: (Icon(
-                                Icons.qr_code,
-                                color: Colors.white,
-                                size: 35,
-                              )),
+                              child: const Center(
+                                child: (Icon(
+                                  Icons.send_sharp,
+                                  color: Colors.white,
+                                  size: 35,
+                                )),
+                              ),
                             ),
 
                             // bank balance
@@ -427,11 +177,13 @@ class _MyHomepageState extends State<MyHomepage> {
                                 ),
                                 borderRadius: BorderRadius.circular(17),
                               ),
-                              child: (Icon(
-                                Icons.qr_code,
-                                color: Colors.white,
-                                size: 35,
-                              )),
+                              child: const Center(
+                                child: (Icon(
+                                  Icons.data_exploration_rounded,
+                                  color: Colors.white,
+                                  size: 35,
+                                )),
+                              ),
                             ),
 
                             // transactions
@@ -447,11 +199,13 @@ class _MyHomepageState extends State<MyHomepage> {
                                 ),
                                 borderRadius: BorderRadius.circular(17),
                               ),
-                              child: (const Icon(
-                                Icons.qr_code,
-                                color: Colors.white,
-                                size: 35,
-                              )),
+                              child: const Center(
+                                child: (Icon(
+                                  Icons.account_balance,
+                                  color: Colors.white,
+                                  size: 32,
+                                )),
+                              ),
                             ),
                           ],
                         ),
@@ -526,10 +280,10 @@ class _MyHomepageState extends State<MyHomepage> {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 163, 214, 255),
               ),
-              padding: EdgeInsets.all(0), // Adjust padding here
+              padding: const EdgeInsets.all(0), // Adjust padding here
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -557,13 +311,19 @@ class _MyHomepageState extends State<MyHomepage> {
                       ),
                     ),
                     Container(
-                      child: Row(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: const Row(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             width: 90,
                           ),
-                          Icon(Icons.qr_code),
-                          const SizedBox(width: 9),
+                          Icon(
+                            Icons.qr_code,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: 9),
                           Text(
                             'QR Code',
                             style: TextStyle(
@@ -624,16 +384,21 @@ class _MyHomepageState extends State<MyHomepage> {
                 // Handle about app tap
               },
             ),
-            SizedBox(height: 150), // Adjusted space between list items
+            const SizedBox(height: 150), // Adjusted space between list items
             ElevatedButton(
-              onPressed: () {
-                // Handle logout button tap
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => Phonenumber()),
+                );
               },
               child: const Text("Log out"),
             ),
           ],
         ),
       ),
+
       /* floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.purple[800],
@@ -720,6 +485,7 @@ class _MyHomepageState extends State<MyHomepage> {
         ),
       ),*/
 
+      // Bottom Navigation bar
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -739,12 +505,12 @@ class _MyHomepageState extends State<MyHomepage> {
                 });
               },
               child: Icon(
-                Icons.home,
-                size: 30,
+                Icons.currency_rupee,
+                size: 35,
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
             ),
-            InkWell(
+            /*InkWell(
               onTap: () {
                 setState(() {
                   barindex = 1;
@@ -755,8 +521,8 @@ class _MyHomepageState extends State<MyHomepage> {
                 Icons.search,
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
-            ),
-            InkWell(
+            ),*/
+            /*InkWell(
               onTap: () {
                 setState(() {
                   barindex = 2;
@@ -768,7 +534,8 @@ class _MyHomepageState extends State<MyHomepage> {
                 Icons.print,
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
-            ),
+            ),*/
+
             InkWell(
               onTap: () {
                 setState(() {
@@ -777,8 +544,9 @@ class _MyHomepageState extends State<MyHomepage> {
                 });
               },
               child: Icon(
-                Icons.people,
+                Icons.auto_graph,
                 color: Color.fromARGB(255, 255, 255, 255),
+                size: 35,
               ),
             ),
           ],
