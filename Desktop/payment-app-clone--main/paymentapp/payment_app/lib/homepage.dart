@@ -8,7 +8,6 @@ import 'package:flutter/widgets.dart';
 import 'package:payment_app/edit_profile.dart';
 import 'package:payment_app/phonenumber_verification.dart';
 import 'package:payment_app/qr_scanner.dart';
-//import 'package:payment_app/phonenumber_verification.dart';
 
 class MyHomepage extends StatefulWidget {
   MyHomepage({Key? key}) : super(key: key);
@@ -239,6 +238,7 @@ class _MyHomepageState extends State<MyHomepage> {
                         const SizedBox(
                           height: 30,
                         ),
+
                         // just for decoration
 
                         Center(
@@ -311,7 +311,7 @@ class _MyHomepageState extends State<MyHomepage> {
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                       ),
                       child: const Row(
@@ -437,54 +437,6 @@ class _MyHomepageState extends State<MyHomepage> {
                 label: "History"),
           ]),*/
 
-      /*floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        
-        padding: const EdgeInsets.symmetric(horizontal: 0),
-        height: 60,
-        color: Color.fromARGB(255, 38, 134, 218),
-        shape: const CircularNotchedRectangle(),
-        
-        notchMargin: 10,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            
-            IconButton(
-              
-              icon: const Icon(
-                Icons.home,
-                size: 30,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.search,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.print,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.people,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),*/
-
       // Bottom Navigation bar
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -510,32 +462,6 @@ class _MyHomepageState extends State<MyHomepage> {
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
             ),
-            /*InkWell(
-              onTap: () {
-                setState(() {
-                  barindex = 1;
-                  // Handle tap for second icon (search)
-                });
-              },
-              child: Icon(
-                Icons.search,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-            ),*/
-            /*InkWell(
-              onTap: () {
-                setState(() {
-                  barindex = 2;
-
-                  // Handle tap for third icon (print)
-                });
-              },
-              child: Icon(
-                Icons.print,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-            ),*/
-
             InkWell(
               onTap: () {
                 setState(() {
