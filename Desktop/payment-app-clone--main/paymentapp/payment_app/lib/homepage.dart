@@ -347,7 +347,7 @@ class _MyHomepageState extends State<MyHomepage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => editprofile(),
+                    builder: (context) => EditProfile(),
                   ),
                 );
               },
