@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class QRCodeScannerApp extends StatefulWidget {
+class QRCodeScanner extends StatefulWidget {
+  const QRCodeScanner({super.key});
+
   @override
-  _QRCodeScannerAppState createState() => _QRCodeScannerAppState();
+  _QRCodeScannerState createState() => _QRCodeScannerState();
 }
 
-class _QRCodeScannerAppState extends State<QRCodeScannerApp> {
+class _QRCodeScannerState extends State<QRCodeScanner> {
   QRViewController? _controller;
   final GlobalKey _qrKey = GlobalKey(debugLabel: 'QR');
 
@@ -33,14 +35,16 @@ class _QRCodeScannerAppState extends State<QRCodeScannerApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark(), // Apply dark theme
       home: Scaffold(
+        backgroundColor: Colors.blue,
         appBar: AppBar(
-          title: Text(
+          backgroundColor: Colors.blue,
+          title: const Text(
             'QR Code Scanner',
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w600,
+              color: Colors.white,
             ),
           ),
           centerTitle: true,

@@ -1,13 +1,12 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:payment_app/user_details';
+import 'package:payment_app/user_details.dart';
 import 'package:pinput/pinput.dart';
 import 'package:payment_app/phonenumber_verification.dart';
 
 class Otp extends StatefulWidget {
   final String verificationid;
-  // Adding  phoneNumber as a parameter
   final String phoneNumber;
 
   Otp({Key? key, required this.verificationid, required this.phoneNumber})
@@ -83,7 +82,11 @@ class _OtpState extends State<Otp> {
                         .signInWithCredential(credential);
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => UserDetails()),
+                      MaterialPageRoute(
+                        builder: (context) => UserDetails(
+                          phoneNumber: widget.phoneNumber,
+                        ),
+                      ),
                     );
                   } catch (ex) {
                     log(ex.toString());
@@ -96,7 +99,6 @@ class _OtpState extends State<Otp> {
               ),
               TextButton(
                 onPressed: () {
-                  // Pass phoneNumber back to Phonenumber
                   Navigator.push(
                     context,
                     MaterialPageRoute(

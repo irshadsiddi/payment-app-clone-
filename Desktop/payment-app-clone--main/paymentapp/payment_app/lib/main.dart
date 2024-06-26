@@ -12,13 +12,15 @@ void main() async {
   // Check if a user is already verified his phone number
   User? user = FirebaseAuth.instance.currentUser;
 
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    initialRoute: user == null ? 'phonenumber_verification' : 'homepage',
-    routes: {
-      'phonenumber_verification': (context) => Phonenumber(),
-      'otp': (context) => Otp(verificationid: '', phoneNumber: ''),
-      'homepage': (context) => MyHomepage(),
-    },
-  ));
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: user == null ? 'phonenumber_verification' : 'homepage',
+      routes: {
+        'phonenumber_verification': (context) => Phonenumber(),
+        'otp': (context) => Otp(verificationid: '', phoneNumber: ''),
+        'homepage': (context) => MyHomepage(),
+      },
+    ),
+  );
 }
