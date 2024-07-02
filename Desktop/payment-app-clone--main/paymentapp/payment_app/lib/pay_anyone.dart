@@ -27,19 +27,30 @@ class _PayAnyoneState extends State<PayAnyone> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.qr_code)),
-          IconButton(
-              onPressed: () {}, icon: const Icon(Icons.question_mark_outlined)),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.qr_code,
+                size: 35,
+              ),
+            ),
+          ),
         ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          const SizedBox(
+            height: 10,
+          ),
           const Text(
             'Send to any mobile number',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
+              fontSize: 20,
             ),
           ),
           const SizedBox(
@@ -51,6 +62,7 @@ class _PayAnyoneState extends State<PayAnyone> {
               controller: mblcontroller,
               decoration: InputDecoration(
                 hintText: 'Search number',
+                focusColor: Colors.blue,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(4),
                 ),

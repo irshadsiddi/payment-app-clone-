@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:payment_app/homepage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserDetails extends StatefulWidget {
   final String phoneNumber;
@@ -40,6 +41,10 @@ class _UserDetailsState extends State<UserDetails> {
           'email': emailController.text.trim(),
           'mobilenumber': mobileController.text.trim(),
         });
+
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('isProfileComplete', true);
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => MyHomepage()),

@@ -1,9 +1,12 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:payment_app/user_details.dart';
 import 'package:pinput/pinput.dart';
 import 'package:payment_app/phonenumber_verification.dart';
+import 'package:payment_app/homepage.dart';
 
 class Otp extends StatefulWidget {
   final String verificationid;
@@ -23,6 +26,52 @@ class _OtpState extends State<Otp> {
   void dispose() {
     otpcontroller.dispose();
     super.dispose();
+  }
+
+  Future<void> _signInWithOTP(BuildContext context) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: widget.verificationid,
+        smsCode: otpcontroller.text.trim(),
+      );
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      // Save login state
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', true);
+
+      // Check if user profile is complete
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        DocumentSnapshot userDoc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
+
+        Map<String, dynamic>? userData =
+            userDoc.data() as Map<String, dynamic>?;
+
+        bool isProfileComplete = userData != null &&
+            userData.containsKey('name') &&
+            userData.containsKey('email');
+
+        await prefs.setBool('isProfileComplete', isProfileComplete);
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => isProfileComplete
+                  ? MyHomepage()
+                  : UserDetails(phoneNumber: widget.phoneNumber)),
+        );
+      }
+    } catch (ex) {
+      log(ex.toString());
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Invalid OTP'),
+      ));
+    }
   }
 
   @override
@@ -71,30 +120,7 @@ class _OtpState extends State<Otp> {
                 showCursor: true,
               ),
               ElevatedButton(
-                onPressed: () async {
-                  try {
-                    PhoneAuthCredential credential =
-                        PhoneAuthProvider.credential(
-                      verificationId: widget.verificationid,
-                      smsCode: otpcontroller.text.trim(),
-                    );
-                    await FirebaseAuth.instance
-                        .signInWithCredential(credential);
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => UserDetails(
-                          phoneNumber: widget.phoneNumber,
-                        ),
-                      ),
-                    );
-                  } catch (ex) {
-                    log(ex.toString());
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('Invalid OTP'),
-                    ));
-                  }
-                },
+                onPressed: () => _signInWithOTP(context),
                 child: const Text("Verify Phone Number"),
               ),
               TextButton(

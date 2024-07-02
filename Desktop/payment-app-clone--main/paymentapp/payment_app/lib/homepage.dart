@@ -115,7 +115,7 @@ class _MyHomepageState extends State<MyHomepage> {
                 child: Center(
                   child: Text(
                     firstchar,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -125,7 +125,6 @@ class _MyHomepageState extends State<MyHomepage> {
           ],
         ),
       ),
-
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -290,16 +289,16 @@ class _MyHomepageState extends State<MyHomepage> {
                         ),
 
                         // to display phone number
-                        Center(
-                          child: Container(
-                            height: 40,
-                            width: 300,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.blue[50],
-                            ),
+                        Container(
+                          height: 25,
+                          width: 180,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.blue[50],
+                          ),
+                          child: Center(
                             child: Text(
-                              phoneNumber,
+                              'UNIQ ID:' + phoneNumber,
                             ),
                           ),
                         ),
@@ -349,7 +348,6 @@ class _MyHomepageState extends State<MyHomepage> {
           ),
         ),
       ),
-
       drawer: Drawer(
         backgroundColor: Colors.white,
         child: ListView(
@@ -371,7 +369,7 @@ class _MyHomepageState extends State<MyHomepage> {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Icon(
                           Icons.account_circle_sharp,
                           color: Colors.white,
@@ -379,7 +377,7 @@ class _MyHomepageState extends State<MyHomepage> {
                         ),
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Drawer Header',
                       style: TextStyle(
                         color: Colors.white,
@@ -397,7 +395,7 @@ class _MyHomepageState extends State<MyHomepage> {
                       decoration: const BoxDecoration(
                         color: Color.fromARGB(255, 181, 216, 245),
                       ),
-                      child: const Row(
+                      child: Row(
                         children: [
                           SizedBox(
                             width: 90,
@@ -484,96 +482,6 @@ class _MyHomepageState extends State<MyHomepage> {
           ],
         ),
       ),
-
-      /* floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.purple[800],
-          onTap: (index) {
-            setState(() {
-              barindex = index;
-            });
-          },
-          currentIndex: barindex,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                  color: Colors.purple[200],
-                ),
-                label: "Home",
-                backgroundColor: Colors.purple[800]),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.purple[200],
-                ),
-                label: "search"),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.show_chart_rounded,
-                  size: 25,
-                  color: Colors.purple[200],
-                ),
-                label: "data"),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.compare_arrows_rounded,
-                  color: Colors.purple[200],
-                ),
-                label: "History"),
-          ]),*/
-
-      // Bottom Navigation bar
-      // Bottom Navigation bar
-
-      /*floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        padding: const EdgeInsets.symmetric(horizontal: 0),
-        height: 60,
-        color: const Color.fromARGB(255, 38, 134, 218),
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 10,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            // rupee icon
-            InkWell(
-              onTap: () {
-                setState(() {
-                  barindex = 0;
-                  // Handle tap for first icon (home)
-                });
-              },
-              child: Icon(
-                Icons.currency_rupee,
-                size: 35,
-                color: barindex == 0
-                    ? Colors.blue
-                    : Color.fromARGB(255, 255, 255, 255),
-              ),
-
-              // graph icon
-            ),
-            InkWell(
-              onTap: () {
-                setState(() {
-                  barindex = 3;
-                  // Handle tap for fourth icon (people)
-                });
-              },
-              child: Icon(
-                Icons.auto_graph,
-                size: 35,
-                color: barindex == 3
-                    ? Colors.blue
-                    : Color.fromARGB(255, 255, 255, 255),
-              ),
-            ),
-          ],
-        ),
-      ),*/
-
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         padding: const EdgeInsets.symmetric(horizontal: 0),
