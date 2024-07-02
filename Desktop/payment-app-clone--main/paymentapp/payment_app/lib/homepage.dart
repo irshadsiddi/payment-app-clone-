@@ -80,7 +80,11 @@ class _MyHomepageState extends State<MyHomepage> {
               width: 0,
             ),
             Container(
-              child: Padding(
+              decoration: BoxDecoration(
+                color: Colors.blue[50],
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: const Padding(
                 padding: EdgeInsets.all(7.0),
                 child: Text(
                   'Just Launched',
@@ -90,10 +94,6 @@ class _MyHomepageState extends State<MyHomepage> {
                     color: Colors.blue,
                   ),
                 ),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.blue[50],
-                borderRadius: BorderRadius.circular(100),
               ),
             ),
             GestureDetector(
@@ -377,15 +377,15 @@ class _MyHomepageState extends State<MyHomepage> {
                         ),
                       ),
                     ),
-                    const Text(
-                      'Drawer Header',
-                      style: TextStyle(
+                    Text(
+                      userName,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 25,
                       ),
                     ),
-                    const Text(
-                      'Phonenumber',
+                    Text(
+                      phoneNumber,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 17,
@@ -395,7 +395,7 @@ class _MyHomepageState extends State<MyHomepage> {
                       decoration: const BoxDecoration(
                         color: Color.fromARGB(255, 181, 216, 245),
                       ),
-                      child: Row(
+                      child: const Row(
                         children: [
                           SizedBox(
                             width: 90,
