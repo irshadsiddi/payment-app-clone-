@@ -10,6 +10,7 @@ import 'package:payment_app/edit_profile.dart';
 import 'package:payment_app/pay_anyone.dart';
 import 'package:payment_app/phonenumber_verification.dart';
 import 'package:payment_app/qr_scanner.dart';
+import 'package:payment_app/transaction_history.dart';
 
 class MyHomepage extends StatefulWidget {
   MyHomepage({Key? key}) : super(key: key);
@@ -251,23 +252,26 @@ class _MyHomepageState extends State<MyHomepage> {
 
                             // transactions
 
-                            Container(
-                              height: 55,
-                              width: 55,
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [Colors.blue, Colors.blueAccent],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                height: 55,
+                                width: 55,
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                    colors: [Colors.blue, Colors.blueAccent],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                  borderRadius: BorderRadius.circular(17),
                                 ),
-                                borderRadius: BorderRadius.circular(17),
-                              ),
-                              child: const Center(
-                                child: (Icon(
-                                  Icons.account_balance,
-                                  color: Colors.white,
-                                  size: 32,
-                                )),
+                                child: const Center(
+                                  child: (Icon(
+                                    Icons.account_balance,
+                                    color: Colors.white,
+                                    size: 32,
+                                  )),
+                                ),
                               ),
                             ),
                           ],
@@ -280,7 +284,7 @@ class _MyHomepageState extends State<MyHomepage> {
                               Text('Scan\n QR'),
                               Text('      Pay\n  Anyone'),
                               Text('     see\n   graph'),
-                              Text('   check\n Balance'),
+                              Text('             See\n Transactions'),
                             ],
                           ),
                         ),
