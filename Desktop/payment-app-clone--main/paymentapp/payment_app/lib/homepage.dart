@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+//import 'package:payment_app/ac_balance.dart';
 import 'package:payment_app/edit_profile.dart';
 import 'package:payment_app/pay_anyone.dart';
 import 'package:payment_app/phonenumber_verification.dart';
@@ -55,6 +56,7 @@ class _MyHomepageState extends State<MyHomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       extendBody: true,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
@@ -72,7 +74,7 @@ class _MyHomepageState extends State<MyHomepage> {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 254, 254),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -187,7 +189,7 @@ class _MyHomepageState extends State<MyHomepage> {
                                   borderRadius: BorderRadius.circular(17),
                                 ),
                                 child: const Center(
-                                  child: (const Icon(
+                                  child: (Icon(
                                     Icons.qr_code,
                                     color: Colors.white,
                                     size: 35,
@@ -253,7 +255,14 @@ class _MyHomepageState extends State<MyHomepage> {
                             // transactions
 
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => TransactionHistory(),
+                                  ),
+                                );
+                              },
                               child: Container(
                                 height: 55,
                                 width: 55,
@@ -327,10 +336,10 @@ class _MyHomepageState extends State<MyHomepage> {
                           height: 35,
                         ),
 
-                        const Placeholder(
-                          fallbackWidth: 500,
-                          fallbackHeight: 100,
-                        ),
+                        // const Placeholder(
+                        //   fallbackWidth: 500,
+                        //   fallbackHeight: 100,
+                        // ),
                       ],
                     ),
                   ),

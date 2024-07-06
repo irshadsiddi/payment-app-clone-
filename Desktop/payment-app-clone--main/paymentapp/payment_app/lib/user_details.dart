@@ -36,11 +36,34 @@ class _UserDetailsState extends State<UserDetails> {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       try {
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-          'name': nameController.text.trim(),
-          'email': emailController.text.trim(),
-          'mobilenumber': mobileController.text.trim(),
-        });
+        // Check if the user already exists in Firestore
+        DocumentSnapshot userDoc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
+
+        // If the user does not exist, set initial balance
+        if (!userDoc.exists) {
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .set({
+            'name': nameController.text.trim(),
+            'email': emailController.text.trim(),
+            'mobilenumber': mobileController.text.trim(),
+            'balance': 10000, // Initial balance
+          });
+        } else {
+          // If the user exists, update their details without changing the balance
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .update({
+            'name': nameController.text.trim(),
+            'email': emailController.text.trim(),
+            'mobilenumber': mobileController.text.trim(),
+          });
+        }
 
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool('isProfileComplete', true);
@@ -67,7 +90,7 @@ class _UserDetailsState extends State<UserDetails> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // name
+            // Name field
             TextFormField(
               controller: nameController,
               decoration: const InputDecoration(
@@ -78,7 +101,7 @@ class _UserDetailsState extends State<UserDetails> {
 
             const SizedBox(height: 10),
 
-            //email
+            // Email field
             TextFormField(
               controller: emailController,
               decoration: const InputDecoration(
@@ -86,9 +109,10 @@ class _UserDetailsState extends State<UserDetails> {
                 border: OutlineInputBorder(),
               ),
             ),
+
             const SizedBox(height: 10),
 
-            // mobile number
+            // Mobile number field
             TextFormField(
               controller: mobileController,
               decoration: const InputDecoration(
@@ -97,8 +121,10 @@ class _UserDetailsState extends State<UserDetails> {
               ),
               readOnly: true,
             ),
+
             const SizedBox(height: 20),
 
+            // Save button
             ElevatedButton(
               onPressed: () async {
                 if (nameController.text.isNotEmpty &&

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class PayAnyone extends StatefulWidget {
-  const PayAnyone({super.key});
+  const PayAnyone({Key? key}) : super(key: key);
 
   @override
   State<PayAnyone> createState() => _PayAnyoneState();
@@ -14,11 +14,13 @@ class _PayAnyoneState extends State<PayAnyone> {
   List<Map<String, dynamic>> userList = [];
   List<Map<String, dynamic>> filteredUserList = [];
   String senderId = FirebaseAuth.instance.currentUser!.uid;
+  int senderBalance = 0; // Initialize sender's balance
 
   @override
   void initState() {
     super.initState();
     fetchUsers();
+    fetchSenderBalance(); // Fetch sender's balance on init
   }
 
   Future<void> fetchUsers() async {
@@ -29,14 +31,35 @@ class _PayAnyoneState extends State<PayAnyone> {
         userList = snapshot.docs
             .map((doc) => doc.data() as Map<String, dynamic>)
             .toList();
-        filteredUserList = userList;
+        filteredUserList = List.from(
+            userList); // Ensure filteredUserList is a copy of userList initially
       });
     } catch (e) {
       print('Error fetching users: $e');
     }
   }
 
+  Future<void> fetchSenderBalance() async {
+    try {
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(senderId)
+          .get();
+      if (snapshot.exists) {
+        setState(() {
+          // Ensure the balance is cast to int
+          senderBalance =
+              (snapshot.data() as Map<String, dynamic>)['balance'].toInt();
+          print('Sender balance fetched: $senderBalance');
+        });
+      }
+    } catch (e) {
+      print('Error fetching sender balance: $e');
+    }
+  }
+
   void handleListTileTap(Map<String, dynamic> user) {
+    // Removed sender balance check as requested
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -72,7 +95,20 @@ class _PayAnyoneState extends State<PayAnyone> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () async {
-                    int amount = int.parse(amountController.text);
+                    int amount = int.tryParse(amountController.text) ?? 0;
+                    if (amount <= 0) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('Amount must be greater than zero')),
+                      );
+                      return;
+                    }
+                    if (amount > senderBalance) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Insufficient balance!')),
+                      );
+                      return;
+                    }
                     await sendCurrency(senderId, user['mobilenumber'], amount);
                     Navigator.pop(context);
                   },
@@ -136,25 +172,27 @@ class _PayAnyoneState extends State<PayAnyone> {
         Map<String, dynamic> receiverData =
             receiverSnapshot.data() as Map<String, dynamic>;
 
-        int senderBalance = senderData['balance'];
-        int receiverBalance = receiverData['balance'];
+        int currentSenderBalance = senderData['balance'].toInt();
+        int currentReceiverBalance = receiverData['balance'].toInt();
 
-        if (senderBalance < amount) {
+        if (currentSenderBalance < amount) {
           throw Exception("Insufficient balance!");
         }
 
-        transaction.update(senderRef, {'balance': senderBalance - amount});
-        transaction.update(receiverRef, {'balance': receiverBalance + amount});
+        transaction
+            .update(senderRef, {'balance': currentSenderBalance - amount});
+        transaction
+            .update(receiverRef, {'balance': currentReceiverBalance + amount});
 
         // Log transactions
-        await senderRef.collection('transactions').add({
+        await senderRef.collection('collection_transaction').add({
           'amount': amount,
           'type': 'debit',
           'date': FieldValue.serverTimestamp(),
           'to': receiverId
         });
 
-        await receiverRef.collection('transactions').add({
+        await receiverRef.collection('collection_transaction').add({
           'amount': amount,
           'type': 'credit',
           'date': FieldValue.serverTimestamp(),
@@ -163,8 +201,9 @@ class _PayAnyoneState extends State<PayAnyone> {
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Transaction successful!')),
+        const SnackBar(content: Text('Transaction successful!')),
       );
+      fetchSenderBalance(); // Update sender balance
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Transaction failed: $e')),
@@ -240,7 +279,7 @@ class _PayAnyoneState extends State<PayAnyone> {
                     backgroundColor: Colors.blue,
                     child: Text(
                       user['name'][0].toUpperCase(),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                   title: Text(
